@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2013 The custom Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,9 +32,9 @@ COMMON_GLOBAL_CFLAGS += -DCAMERA_WITH_CITYID_PARAM
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/smdk4412
 ifeq ($(TARGET_VOICE_TECH), cdma)
-TARGET_KERNEL_CONFIG := cyanogenmod_t0ltecdma_defconfig
+TARGET_KERNEL_CONFIG := custom_t0ltecdma_defconfig
 else
-TARGET_KERNEL_CONFIG := cyanogenmod_t0lte_defconfig
+TARGET_KERNEL_CONFIG := custom_t0lte_defconfig
 endif
 
 # Recovery
@@ -45,10 +45,10 @@ RECOVERY_FSTAB_VERSION := 2
 TARGET_OTA_ASSERT_DEVICE := t0lte,t0ltexx,GT-N7105,t0ltedv,GT-N7105T,t0lteatt,SGH-I317,t0ltetmo,SGH-T889,t0ltecan,t0ltevl,SGH-I317M
 
 # Selinux
-BOARD_SEPOLICY_DIRS := \
+BOARD_SEPOLICY_DIRS += \
     device/samsung/t0lte/selinux
 
-BOARD_SEPOLICY_UNION := \
+BOARD_SEPOLICY_UNION += \
     file_contexts \
     te_macros \
     device.te \
@@ -66,3 +66,8 @@ BOARD_SEPOLICY_UNION := \
     ueventd.te \
     wpa_supplicant.te
 
+# TWRP
+DEVICE_RESOLUTION := 720x1280
+
+# Compatibility with pre-kitkat Sensor HALs
+SENSORS_NEED_SETRATE_ON_ENABLE := true
